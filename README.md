@@ -4,7 +4,7 @@ A self-contained, D&D-inspired real-world ability assessment. Open `index.html` 
 
 ## Features
 
-- 30-question attempt drawn randomly from a 72-question bank (12 questions per ability).
+- 30-question attempt drawn randomly from a 78-question bank (13 questions per ability).
 - Five response options: Strongly disagree through Strongly agree.
 - Five randomly selected questions per ability on each attempt, shuffled together.
 - Weighted questions and reverse-scored statements.
