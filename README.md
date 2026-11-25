@@ -4,13 +4,13 @@ A self-contained, D&D-inspired real-world ability assessment. Open `index.html` 
 
 ## Features
 
-- 30-question attempt drawn randomly from a 78-question bank (13 questions per ability).
+- 48-question attempt drawn from a 78-question bank (13 questions per ability).
 - Five response options: Strongly disagree through Strongly agree.
-- Five randomly selected questions per ability on each attempt, shuffled together.
+- Eight questions per ability on each attempt, selected across available facets with a reverse-keyed item included where available; all questions are shuffled together.
 - Weighted questions and reverse-scored statements.
-- All six scores begin at 10; diminishing-returns scoring makes extreme results increasingly difficult.
-- Results include a score, D&D-style ability modifier, qualitative interpretation, and a custom inline SVG emblem.
-- Responsive layout, keyboard focus states, reduced-motion support, and print-friendly results.
+- All six scores begin at 10; the current provisional scoring curve keeps unverified self-report results within 4–16.
+- All six scores appear together in a compact results grid. Select any ability for its fuller interpretation. Results include a D&D-style modifier, qualitative interpretation, and custom inline SVG emblem.
+- Responsive layout, keyboard focus states, reduced-motion support, a details dialog, and print-friendly results.
 - No build step, package manager, framework, backend, or external JavaScript dependency.
 
 ## Run locally
@@ -26,13 +26,13 @@ Double-click `index.html`, or serve the folder with any static web server. The q
 
 ## Scoring model
 
-Each ability starts at 10. Each selected question contributes a weighted response from -2 to +2; reverse-keyed questions invert that response. The weighted responses are normalized to a -1 to +1 range, transformed with a power curve, and mapped to an integer score from 1 to 20:
+Each ability starts at 10. Each selected question contributes a weighted response from -2 to +2; reverse-keyed questions invert that response. The weighted responses are normalized to a -1 to +1 range and mapped with a provisional curve:
 
-`score = round(10 + 10 × sign(r) × |r|^2.05)`
+`score = round(10 + 6 × sign(r) × |r|^1.25)`
 
-where `r` is the normalized weighted response for that ability. This deliberately compresses ordinary differences around 10 and makes scores near 1 or 20 rare. The D&D-style modifier is calculated as `floor((score - 10) / 2)`.
+where `r` is the normalized weighted response for that ability. The current implementation clamps self-report scores to 4–16; it does not award 18–20 based on unverified claims. The D&D-style modifier is calculated as `floor((score - 10) / 2)`. This is a design choice, not a statistically normed scale. A representative response sample and item-level calibration would be needed before reporting percentiles or claiming that a particular score is rare in the population.
 
-The question bank is randomized, so different attempts can produce different question sets. Because this is a short self-report quiz, results are approximate and should be treated as entertainment—not a validated psychometric, medical, IQ, or physical-performance assessment.
+The question bank is randomized, so different attempts can produce different question sets. Eight questions are selected per ability, with selection spread across the available question facets and a reverse-keyed item included where available. Because this is a short self-report quiz, results are approximate and should be treated as entertainment—not a validated psychometric, medical, IQ, or physical-performance assessment.
 
 ## D&D rules references
 
