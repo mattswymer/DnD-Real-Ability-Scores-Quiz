@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10131d">
+<meta name="description" content="Discover your six real-world D&D ability scores. A playful, thoughtful assessment inspired by the world's greatest roleplaying game.">
+<title>Real Ability Scores — A D&D-inspired assessment</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--bg:#0d1018;--panel:#171c29;--panel2:#202738;--ink:#f3f0e8;--muted:#a8b0c0;--gold:#d8b66d;--line:#343d50;--blue:#83b9d8;--green:#91c5a2;--red:#d58e83;--shadow:0 24px 80px #0008}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#283149 0,#111622 42%,var(--bg) 75%);color:var(--ink);font-family:Inter,system-ui,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.shell{width:min(1050px,calc(100% - 32px));margin:auto;padding:34px 0 70px}.topline{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase}.sigil{color:var(--gold);font-family:Cinzel,serif;font-weight:700}
+.hero{text-align:center;padding:clamp(55px,10vh,110px) 12px 55px;animation:rise .8s ease both}.eyebrow{color:var(--gold);letter-spacing:.24em;text-transform:uppercase;font-size:.72rem;font-weight:700}.hero h1{font:700 clamp(2.7rem,7vw,5.7rem)/1.02 Cinzel,serif;letter-spacing:-.045em;margin:18px 0 20px;text-shadow:0 6px 35px #0009}.hero h1 span{display:block;color:var(--gold)}.hero p{max-width:660px;margin:0 auto;color:#c0c6d1;line-height:1.8;font-size:1.04rem}.hero-art{width:180px;height:150px;margin:0 auto 28px;filter:drop-shadow(0 15px 30px #d8b66d22)}
+.primary{border:1px solid #f2d493;background:linear-gradient(135deg,#e7cb8a,#b88d45);color:#17130c;padding:15px 28px;border-radius:9px;font-weight:800;letter-spacing:.04em;box-shadow:0 10px 30px #d8b66d25;transition:.2s transform,.2s filter}.primary:hover{transform:translateY(-3px);filter:brightness(1.08)}.start-row{margin-top:32px}.fine{font-size:.78rem;color:var(--muted);margin-top:17px}
+.panel{background:linear-gradient(145deg,#1b2231ee,#131925f5);border:1px solid #39445a;border-radius:18px;box-shadow:var(--shadow)}
+.quiz-head{position:sticky;top:0;z-index:5;background:#0d1018eF;backdrop-filter:blur(14px);padding:14px 0 18px;margin-bottom:22px}.quiz-meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:.82rem;margin-bottom:10px}.track{height:6px;background:#30384a;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#8a6b39,#f0d18b);transition:width .35s ease}
+.q-list{display:grid;gap:14px}.question{padding:20px 22px;animation:rise .35s ease both}.q-top{display:flex;gap:14px;align-items:flex-start}.q-num{font:600 .85rem Cinzel;color:var(--gold);padding-top:3px}.q-text{font-size:1rem;line-height:1.55;font-weight:600}.q-hint{font-size:.78rem;color:var(--muted);margin:6px 0 15px 32px}.answers{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-left:32px}.answer{min-height:48px;padding:9px 5px;border-radius:8px;border:1px solid #414b60;background:#202839;color:#cbd1dc;font-size:.75rem;font-weight:700;transition:.16s}.answer:hover{border-color:var(--gold);background:#30394c}.answer[aria-pressed=true]{background:linear-gradient(145deg,#e6c981,#bd9856);border-color:#f3d99a;color:#17130c;box-shadow:0 4px 16px #d8b66d30}
+.actions{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:12px}.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);padding:12px 17px;border-radius:8px}.ghost:hover{border-color:#78859b;color:white}.hidden{display:none!important}
+.results-head{text-align:center;padding:54px 12px 34px;animation:rise .7s ease both}.results-head h2{font:700 clamp(2.3rem,6vw,4rem) Cinzel;margin:13px 0}.results-head p{color:var(--muted);line-height:1.7;max-width:680px;margin:auto}.score-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.score-card{overflow:hidden;position:relative;padding:0;animation:rise .55s ease both}.score-banner{height:116px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 80%,var(--tint),transparent 65%),linear-gradient(135deg,#242e40,#171e2c)}.score-banner svg{height:100px;width:130px;filter:drop-shadow(0 7px 15px #0008)}.score-content{padding:20px 22px 23px}.score-line{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.score-name{font:700 1.25rem Cinzel}.score-number{font:800 2.6rem Cinzel;color:var(--accent);line-height:1}.modifier{color:var(--muted);font-size:.75rem;margin-top:5px}.score-desc{color:#c2c9d5;line-height:1.65;font-size:.9rem;margin:14px 0}.meter{height:7px;border-radius:9px;background:#333e52;overflow:hidden}.meter>span{height:100%;display:block;background:linear-gradient(90deg,var(--accent),#f0d99e);border-radius:9px;transition:width 1s ease}.band{font-size:.72rem;color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-top:12px}
+.summary{margin-top:20px;padding:25px}.summary h3{font:600 1.35rem Cinzel;margin:0 0 12px}.summary p{color:#c2c9d5;line-height:1.7;margin:0}.result-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:26px 0}.note{font-size:.76rem;color:#8f99aa;line-height:1.6;text-align:center;max-width:760px;margin:24px auto}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+@media(max-width:650px){.shell{width:min(100% - 22px,560px);padding-top:20px}.topline{font-size:.65rem}.hero{padding-top:55px}.answers{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin-left:0}.answer{font-size:.64rem;min-height:56px;padding:7px 2px;line-height:1.2}.q-hint{margin-left:0}.question{padding:17px 14px}.score-grid{grid-template-columns:1fr}.score-banner{height:95px}.score-banner svg{height:85px}.actions .primary,.actions .ghost{padding:12px 14px;font-size:.82rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+ <div class="topline"><span class="sigil">The Adventurer's Ledger</span><span>Six abilities · One mortal</span></div>
+ <main id="intro">
+  <section class="hero">
+   <svg class="hero-art" viewBox="0 0 180 150" fill="none" aria-hidden="true"><path d="M90 7 151 39v72l-61 32-61-32V39L90 7Z" stroke="#d8b66d" stroke-width="2"/><path d="m90 20 49 26v58l-49 26-49-26V46l49-26Z" stroke="#d8b66d" opacity=".45"/><path d="m90 35 12 31 33 2-25 21 8 32-28-18-28 18 8-32-25-21 33-2 12-31Z" fill="#d8b66d" opacity=".16" stroke="#e7cb8a" stroke-width="2"/><circle cx="90" cy="76" r="9" fill="#e7cb8a"/><path d="M90 7V0M151 39l9-5M151 111l9 5M29 111l-9 5M29 39l-9-5" stroke="#d8b66d" stroke-width="2"/></svg>
+   <div class="eyebrow">A real-world ability assessment</div>
+   <h1>What Are Your <span>Ability Scores?</span></h1>
+   <p>Every adventurer has six abilities. Strength. Dexterity. Constitution. Intelligence. Wisdom. Charisma. The question is: if your life were a campaign, what would your character sheet look like?</p>
+   <div class="start-row"><button class="primary" id="start">Determine My Scores</button></div>
+   <div class="fine">About 5–8 minutes · 30 questions · No dice required</div>
+  </section>
+  <section class="panel" style="padding:22px 25px;margin:0 auto;max-width:760px">
+   <div class="eyebrow">Before you begin</div>
+   <p style="color:#c2c9d5;line-height:1.7;margin:10px 0 0">Answer for what you can actually do—not what you wish you could do, what you did once in college, or what your friends insist you're good at. Some questions are serious. Some are ridiculous. A few are both. Your scores begin at 10, the D&D human average.</p>
+  </section>
+ </main>
+ <main id="quiz" class="hidden">
+  <div class="quiz-head"><div class="quiz-meta"><span id="progress-label">Question 1 of 30</span><span id="progress-pct">0% complete</span></div><div class="track"><div class="fill" id="progress-fill"></div></div></div>
+  <div id="question-list" class="q-list"></div>
+  <div class="actions"><button class="ghost" id="back">← Previous</button><button class="primary" id="next">Next question →</button></div>
+ </main>
+ <main id="results" class="hidden">
+  <section class="results-head"><div class="eyebrow">Your character sheet is complete</div><h2>The Results Are In</h2><p>Six abilities. A lifetime of questionable decisions. Here's how your real-world stats stack up.</p></section>
+  <div id="score-grid" class="score-grid"></div>
+  <section class="panel summary"><h3 id="summary-title">Your adventuring profile</h3><p id="summary-text"></p></section>
+  <div class="result-actions"><button class="primary" id="retake">Roll Again · New Questions</button><button class="ghost" id="print">Print Character Sheet</button></div>
+  <p class="note">This is an entertainment-focused, self-report assessment inspired by Dungeons & Dragons—not a validated psychometric test, medical evaluation, IQ test, or athletic assessment. Scores are estimates based on your answers and are not directly interchangeable with clinical measures or actual D&D character generation. In D&D, ability scores also reflect training and competence; this quiz uses self-reported real-world behaviors as imperfect proxies.</p>
+ </main>
+ <div class="note" style="margin-top:38px">Inspired by the ability score system in Dungeons & Dragons. Not affiliated with or endorsed by Wizards of the Coast.</div>
+</div>
+<script>
+"use strict";
+const abilities={
+ strength:{name:"Strength",tag:"Physical might",color:"#e0a16d",tint:"#9a542c",icon:'<path d="M27 42h18l9 9 18-18 12 12-18 18 9 9v18H57l-9-9-18 18-12-12 18-18-9-9V42Z" fill="#d58e62" stroke="#f1c49a" stroke-width="3"/><path d="m38 49 31 31M49 38l31 31" stroke="#6f3d2c" stroke-width="4"/>'},
+ dexterity:{name:"Dexterity",tag:"Agility, reflexes & balance",color:"#83c6c1",tint:"#276f78",icon:'<path d="M67 17c-8 0-12 8-12 17v17l-7-8c-7-8-18 1-12 9l17 26c5 8 13 12 23 12h8c16 0 27-12 27-27V42c0-8-11-10-14-2V28c0-9-13-10-15-1-2-12-15-12-15-1V17Z" fill="#75bcb7" stroke="#c4f0e9" stroke-width="3"/><path d="m30 30 9-9m-9 9 11 2m69-11 9 9m-9-9-2 11" stroke="#d4f3ed" stroke-width="3" stroke-linecap="round"/>'},
+ constitution:{name:"Constitution",tag:"Health & stamina",color:"#91c5a2",tint:"#376e4a",icon:'<path d="M72 91S24 63 24 39c0-18 24-26 38-8 14-18 38-10 38 8 0 24-28 52-28 52Z" fill="#7eb58e" stroke="#c3e8c9" stroke-width="3"/><path d="M20 67h25l8-15 13 29 9-18h27" stroke="#efffe9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'},
+ intelligence:{name:"Intelligence",tag:"Reasoning & memory",color:"#a9a0e8",tint:"#5b4e9a",icon:'<path d="M72 18c-18-13-39 1-37 19-17 12-12 33 2 39-2 17 16 25 29 16 11 9 29 1 28-14 17-9 14-30 1-38 3-16-9-25-23-22Z" fill="#9a91d8" stroke="#d5d0ff" stroke-width="3"/><path d="M69 25v60M49 37l17 12-15 13m37-23L72 51l16 13" stroke="#eeeaff" stroke-width="3" fill="none" stroke-linecap="round"/>'},
+ wisdom:{name:"Wisdom",tag:"Perception & insight",color:"#e0c47e",tint:"#8c7135",icon:'<path d="M18 56s20-25 54-25 54 25 54 25-20 25-54 25S18 56 18 56Z" fill="#d8b86f" stroke="#f5e3aa" stroke-width="3"/><circle cx="72" cy="56" r="17" fill="#28354a" stroke="#fff0bf" stroke-width="3"/><circle cx="72" cy="56" r="7" fill="#e7cb8a"/><path d="M72 7v12m0 74v12M20 15l9 9m86 64 9 9M124 15l-9 9M29 88l-9 9" stroke="#e7cb8a" stroke-width="3" stroke-linecap="round"/>'},
+ charisma:{name:"Charisma",tag:"Confidence, poise & charm",color:"#df91b3",tint:"#8d426c",icon:'<path d="M72 16c-22 0-38 17-38 38 0 25 20 40 38 40s38-15 38-40c0-21-16-38-38-38Z" fill="#c9789d" stroke="#f5c5dc" stroke-width="3"/><path d="M51 54h8m26 0h8M55 72c10 12 24 12 34 0" stroke="#fff0f6" stroke-width="4" stroke-linecap="round"/><path d="m72 4 5 9 10 1-7 7 2 10-10-5-10 5 2-10-7-7 10-1 5-9Z" fill="#f0c6da"/>'}
+};
+const bank=[
+["strength","I can carry two full grocery bags in each hand from the car in one trip.","physical",1.1],
+["strength","I can do at least ten strict push-ups without stopping.","physical",1.2],
+["strength","I can lift and move a heavy piece of furniture with little help.","physical",1.2],
+["strength","I have enough upper-body strength to do a pull-up.","physical",1.3],
+["strength","I can perform a physically demanding task repeatedly without my muscles giving up immediately.","physical",1.1],
+["strength","I can open a stubborn jar without resorting to the engineering department (a.k.a. someone else).","physical",.8],
+["strength","I can throw a ball with noticeably more power or distance than most people I know.","physical",1],
+["strength","I have trained consistently in a strength-based sport or activity and can demonstrate measurable progress.","experience",.8],
+["strength","I can do a controlled front flip and land on my feet on firm ground.","physical",1.5],
+["strength","I avoid lifting, carrying, or forceful physical tasks whenever possible.","reverse",1],
+["strength","My grip strength is a genuine advantage in physical activities.","physical",1],
+["strength","I struggle with tasks that require even moderate muscular effort.","reverse",1.2],
+["dexterity","I can catch a tossed set of keys or a small object without much trouble.","physical",1.2],
+["dexterity","I can comfortably balance on one foot for 30 seconds with my eyes open.","physical",1],
+["dexterity","I can learn a new physical movement by watching someone demonstrate it a few times.","physical",1.1],
+["dexterity","I am good at activities requiring precise hand movements, such as crafts, instruments, or detailed repairs.","skill",1.2],
+["dexterity","I can type quickly and accurately without constantly looking at the keyboard.","skill",1],
+["dexterity","I can navigate a crowded room without bumping into people or furniture.","physical",1],
+["dexterity","I have quick enough reflexes to react successfully to an unexpected dropped object.","physical",1.3],
+["dexterity","I can perform a coordinated sequence of movements (dance steps, drumming, sports footwork) reliably.","skill",1.2],
+["dexterity","I regularly drop things, trip over nothing, or misjudge where my hand is reaching.","reverse",1.1],
+["dexterity","I can thread a needle, handle tiny components, or do similarly precise work without much frustration.","skill",1],
+["constitution","I can walk briskly for an hour without needing a recovery period afterward.","endurance",1.1],
+["constitution","I can climb several flights of stairs without becoming seriously winded.","endurance",1],
+["constitution","I can stay physically active for most of a day and still have energy in the evening.","endurance",1.3],
+["constitution","I can jog continuously for 20 minutes at a comfortable pace.","endurance",1.2],
+["constitution","I recover reasonably quickly after strenuous physical activity.","recovery",1.1],
+["constitution","I have completed a long hike, endurance event, or similarly demanding physical challenge.","experience",1.2],
+["constitution","I can work outdoors in uncomfortable weather longer than most people around me.","endurance",1],
+["constitution","A poor night's sleep leaves me completely useless the following day.","reverse",.9],
+["constitution","I can maintain a steady pace during a long recreational activity without frequent breaks.","endurance",1.1],
+["constitution","I regularly need to sit down and recover after ordinary physical exertion.","reverse",1.2],
+["intelligence","I enjoy solving unfamiliar problems even when there is no obvious practical reward.","reasoning",1.2],
+["intelligence","I can usually understand a complicated explanation and summarize its central idea accurately.","reasoning",1.2],
+["intelligence","I am comfortable working with numbers, patterns, or abstract concepts.","reasoning",1.1],
+["intelligence","When something doesn't make sense, I naturally look for the underlying mechanism.","reasoning",1.2],
+["intelligence","I can learn a complicated new system or tool without needing every step explained.","learning",1.2],
+["intelligence","I can identify flaws in an argument even when I agree with its conclusion.","reasoning",1.3],
+["intelligence","I regularly read, study, or explore subjects simply because I want to understand them.","learning",1],
+["intelligence","I have completed advanced education or professional training that required substantial independent analysis.","experience",.9],
+["intelligence","I can explain a difficult concept in plain language without losing its important details.","reasoning",1.2],
+["intelligence","I often change my mind when new evidence contradicts what I believed.","reasoning",1],
+["intelligence","I can hold several pieces of information in mind while working through a multi-step problem.","memory",1.2],
+["intelligence","I tend to accept the first explanation that sounds convincing rather than investigate further.","reverse",1.1],
+["wisdom","I usually notice when someone's words and body language don't match.","perception",1.2],
+["wisdom","I can tell when a situation is becoming tense before an argument actually starts.","perception",1.1],
+["wisdom","Before making an important decision, I naturally consider the likely consequences several steps ahead.","judgment",1.3],
+["wisdom","I can recognize when I don't know enough to make a confident judgment.","judgment",1.3],
+["wisdom","I notice small changes in my surroundings that other people often miss.","perception",1.2],
+["wisdom","Friends often come to me when they need a calm, practical perspective.","judgment",1],
+["wisdom","I can usually tell when someone needs help, even if they haven't asked.","insight",1],
+["wisdom","I can stay calm and make sensible decisions when plans suddenly go sideways.","judgment",1.2],
+["wisdom","I have a good sense of direction and can navigate unfamiliar places without constantly checking my phone.","survival",.9],
+["wisdom","I sometimes realize a situation was obviously going badly only after it has gone badly.","reverse",1.2],
+["wisdom","I can distinguish a genuinely useful warning from someone simply being anxious or dramatic.","judgment",1.1],
+["wisdom","I am good at reading a room before deciding how to behave in it.","insight",1.1],
+["charisma","I can comfortably start a conversation with someone I've never met.","social",1],
+["charisma","I can explain an idea in a way that makes other people genuinely interested in it.","persuasion",1.2],
+["charisma","When I speak to a group, I can usually hold their attention.","performance",1.3],
+["charisma","I can disagree with someone without making the conversation unnecessarily hostile.","social",1.1],
+["charisma","People often look to me to organize a group or take the lead.","leadership",1.2],
+["charisma","I can persuade someone to consider an idea they initially rejected.","persuasion",1.3],
+["charisma","I can make people laugh, even when I haven't prepared a joke.","performance",1],
+["charisma","I remain reasonably confident when meeting important or intimidating people.","confidence",1.1],
+["charisma","I can adapt how I communicate to connect with very different kinds of people.","social",1.2],
+["charisma","I can negotiate for something I want without becoming aggressive or apologetic.","persuasion",1.1],
+["charisma","I would rather let someone else speak for the group, even when I have something useful to say.","reverse",.9],
+["charisma","I can make a sincere compliment or introduction feel natural rather than awkward.","social",1]
+];
+const scale=[{label:"Strongly disagree",v:-2},{label:"Disagree",v:-1},{label:"Neutral",v:0},{label:"Agree",v:1},{label:"Strongly agree",v:2}];
+let questions=[],answers={},index=0,lastScores={};
+const $=id=>document.getElementById(id);
+function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function begin(){questions=[];answers={};index=0;for(const key of Object.keys(abilities)){const pool=shuffle(bank.filter(q=>q[0]===key));questions.push(...pool.slice(0,5))}questions=shuffle(questions);$("intro").classList.add("hidden");$("results").classList.add("hidden");$("quiz").classList.remove("hidden");render();window.scrollTo({top:0,behavior:"smooth"})}
+function render(){const q=questions[index];$("progress-label").textContent=`Question ${index+1} of ${questions.length}`;$("progress-pct").textContent=Math.round(Object.keys(answers).length/questions.length*100)+"% complete";$("progress-fill").style.width=Object.keys(answers).length/questions.length*100+"%";$("question-list").innerHTML="";const card=document.createElement("section");card.className="panel question";const top=document.createElement("div");top.className="q-top";top.innerHTML=`<span class="q-num">${String(index+1).padStart(2,"0")}</span><div class="q-text"></div>`;top.querySelector(".q-text").textContent=q[1];card.append(top);const hint=document.createElement("div");hint.className="q-hint";hint.textContent="Choose the answer that best reflects your usual ability or behavior.";card.append(hint);const group=document.createElement("div");group.className="answers";group.setAttribute("role","group");group.setAttribute("aria-label","Choose your level of agreement");scale.forEach(s=>{const b=document.createElement("button");b.className="answer";b.textContent=s.label;b.setAttribute("aria-pressed",answers[index]===s.v?"true":"false");b.addEventListener("click",()=>{answers[index]=s.v;render();});group.append(b)});card.append(group);$("question-list").append(card);$("back").disabled=index===0;$("back").style.opacity=index===0?".35":"1";$("next").textContent=index===questions.length-1?"Reveal My Scores →":"Next question →";$("next").disabled=answers[index]===undefined;$("next").style.opacity=answers[index]===undefined?".45":"1"}
+function next(){if(answers[index]===undefined)return;if(index<questions.length-1){index++;render();window.scrollTo({top:0,behavior:"smooth"})}else showResults()}
+function scoreAll(){const out={};Object.keys(abilities).forEach(k=>{const qs=questions.map((q,i)=>({q,i})).filter(x=>x.q[0]===k);let earned=0,max=0;qs.forEach(({q,i})=>{const weight=q[3];let response=answers[i];if(q[2]==="reverse")response=-response;earned+=response*weight;max+=2*weight});const ratio=max?earned/max:0;const value=Math.round(10+10*Math.sign(ratio)*Math.pow(Math.abs(ratio),2.05));out[k]=Math.max(1,Math.min(20,value))});return out}
+const bands=[
+[1,"Profoundly limited"],[2,"Extremely limited"],[3,"Severely limited"],[4,"Significantly limited"],[5,"Well below average"],[6,"Below average"],[7,"Low"],[8,"A little below average"],[9,"Slightly below average"],[10,"Average"],[11,"Average+"],[12,"Above average"],[13,"Clearly strong"],[14,"Very strong"],[15,"Exceptional"],[16,"Rare talent"],[17,"Extraordinary"],[18,"Elite"],[19,"World-class"],[20,"Once-in-a-generation"]
+];
+const descriptions={
+strength:{low:"Physical tasks requiring force or lifting are likely to be unusually difficult. This score describes capability, not worth or determination.",avg:"You have ordinary adult physical strength: capable of everyday lifting and exertion, without unusual strength specialization.",high:"Your strength is a standout trait. You can handle demanding force-based tasks that challenge most people.",top:"Your physical power is extraordinary by human standards—comparable to elite strength athletes in relevant feats."},
+dexterity:{low:"Tasks demanding precise coordination, balance, or quick physical responses may be especially challenging.",avg:"Your coordination and reflexes are broadly typical. You can manage everyday movement and common hand-eye tasks.",high:"You show impressive control, timing, balance, and fine motor ability across demanding activities.",top:"Your coordination is extraordinary—think world-class performers or athletes in feats requiring precision and reaction."},
+constitution:{low:"Sustained exertion may drain you quickly, and recovery after demanding activity may be difficult.",avg:"Your stamina and physical resilience are typical for an adult with a broadly ordinary activity profile.",high:"You have excellent endurance and recovery. Long or demanding physical efforts are a relative strength.",top:"Your endurance is extraordinary, approaching elite endurance-athlete capacity in relevant activities."},
+intelligence:{low:"Complex abstraction, unfamiliar systems, and multi-step reasoning may require substantially more support or time. This is not an IQ diagnosis.",avg:"Your reasoning, learning, and problem-solving profile is broadly typical. You can learn, reason, and solve ordinary problems.",high:"You show unusually strong analytical ability, learning agility, and abstract reasoning.",top:"Your intellectual ability is exceptionally rare—comparable in potential to the world's most gifted thinkers, though this quiz cannot measure IQ or establish equivalence to any historical figure."},
+wisdom:{low:"You may miss contextual cues, overlook consequences, or find it harder to make sound judgments under uncertainty.",avg:"Your situational awareness, practical judgment, and ability to read people are broadly typical.",high:"You consistently notice important details, read situations well, and make thoughtful decisions under uncertainty.",top:"Your perception and judgment are extraordinary—an unusually perceptive, steady observer whose insight stands out in almost any setting."},
+charisma:{low:"Social influence, group confidence, or persuasive communication may take considerable effort. Quietness alone does not imply low Charisma.",avg:"You communicate and connect with people in a fairly typical way, with ordinary strengths and awkward moments.",high:"You have a noticeable ability to connect, persuade, lead, or hold attention across social settings.",top:"Your presence and influence are extraordinary—think world-class communicators, performers, or leaders in the settings where your strengths apply."}
+};
+function narrative(k,s){const b=descriptions[k];if(s<=5)return b.low;if(s<=9)return "You are somewhat below the ordinary adult baseline. "+b.low;if(s<=11)return b.avg;if(s<=14)return b.high;if(s<=17)return b.high+" "+bands[s-1][1]+" describes the degree of distinction.";return b.top}
+function showResults(){lastScores=scoreAll();$("quiz").classList.add("hidden");$("results").classList.remove("hidden");const grid=$("score-grid");grid.innerHTML="";Object.entries(abilities).forEach(([k,a],i)=>{const s=lastScores[k],mod=Math.floor((s-10)/2);const card=document.createElement("article");card.className="panel score-card";card.style.setProperty("--accent",a.color);card.style.setProperty("--tint",a.tint);card.style.animationDelay=(i*.08)+"s";const banner=document.createElement("div");banner.className="score-banner";const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");svg.setAttribute("viewBox","0 0 144 110");svg.setAttribute("role","img");svg.setAttribute("aria-label",a.name+" emblem");const g=document.createElementNS("http://www.w3.org/2000/svg","g");g.innerHTML=a.icon;svg.append(g);banner.append(svg);const content=document.createElement("div");content.className="score-content";const line=document.createElement("div");line.className="score-line";const name=document.createElement("div");name.innerHTML=`<div class="score-name">${a.name}</div><div class="modifier">D&D modifier: ${mod>=0?"+":""}${mod}</div>`;const number=document.createElement("div");number.className="score-number";number.textContent=s;line.append(name,number);const desc=document.createElement("p");desc.className="score-desc";desc.textContent=narrative(k,s);const meter=document.createElement("div");meter.className="meter";const bar=document.createElement("span");bar.style.width=(s/20*100)+"%";meter.append(bar);const band=document.createElement("div");band.className="band";band.textContent=bands[s-1][1];content.append(line,desc,meter,band);card.append(banner,content);grid.append(card)});const sorted=Object.entries(lastScores).sort((a,b)=>b[1]-a[1]);const [best,second]=sorted;const [weak]=sorted.slice(-1);$("summary-title").textContent=best[1]===second[1]?"A well-rounded adventurer":abilities[best[0]].name+" is your primary attribute";$("summary-text").textContent=`Your strongest ability is ${abilities[best[0]].name} (${best[1]}), followed by ${abilities[second[0]].name} (${second[1]}). Your lowest score is ${abilities[weak[0]].name} (${weak[1]}). In party terms, you might naturally gravitate toward ${best[0]==="intelligence"?"the scholar, tactician, or problem-solver":best[0]==="wisdom"?"the scout, healer, or voice of reason":best[0]==="charisma"?"the face, leader, or negotiator":best[0]==="strength"?"the powerhouse or front-line bruiser":best[0]==="dexterity"?"the agile specialist or quick-handed operator":"the durable adventurer who just keeps going"}. Remember: a lower score is a relative weakness, not a character flaw. Every party needs more than one kind of hero.`;window.scrollTo({top:0,behavior:"smooth"})}
+$("start").addEventListener("click",begin);$("next").addEventListener("click",next);$("back").addEventListener("click",()=>{if(index>0){index--;render();window.scrollTo({top:0,behavior:"smooth"})}});$("retake").addEventListener("click",()=>{begin()});$("print").addEventListener("click",()=>window.print());
+</script>
+<style>@media print{body{background:white;color:#111}.topline,.result-actions,.note{display:none!important}.shell{width:100%;padding:0}.panel{background:white;color:#111;box-shadow:none;border:1px solid #bbb;break-inside:avoid}.score-desc,.summary p{color:#333}.score-grid{gap:8px}.score-banner{height:70px}.results-head{padding:10px}.score-card{color:#111}}</style>
+</body>
+</html>
