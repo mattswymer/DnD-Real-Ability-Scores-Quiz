@@ -7,7 +7,7 @@ A self-contained, D&D-inspired real-world ability assessment. Open `index.html` 
 - 48-question attempt drawn from a 78-question bank (13 questions per ability).
 - Six response options: Strongly disagree through Strongly agree, plus Doesn't apply for questions that are not relevant to the respondent.
 - Eight questions per ability on each attempt, selected across available facets with a reverse-keyed item included where available; all questions are shuffled together.
-- Weighted questions and reverse-scored statements; questions marked Doesn't apply are excluded from that ability's score denominator.
+- Weighted questions and reverse-scored statements; questions marked Doesn’t apply are excluded from that ability's score denominator. At least four applicable answers are required to calculate a score; otherwise the results show that there is insufficient data rather than assigning a misleading average.
 - All six scores begin at 10; the current provisional scoring curve keeps unverified self-report results within 4–16.
 - All six scores appear together in a compact results grid. Select any ability for its fuller interpretation. Results include a D&D-style modifier, qualitative interpretation, and custom inline SVG emblem.
 - Responsive layout, keyboard focus states and arrow-key radio navigation, reduced-motion support, an accessible details dialog, and print-friendly results.
